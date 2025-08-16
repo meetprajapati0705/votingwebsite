@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Voting – Homepage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #162839;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Header Animation */
+    header {
+      background-color: #004aad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      animation: slideDown 1.2s ease-out;
+    }
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 5px 0 0;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Intro Section */
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .intro h2 {
+      margin-bottom: 10px;
+      animation: fadeInUp 1.3s ease-in;
+    }
+    .intro p {
+      line-height: 1.6;
+      animation: fadeInUp 1.5s ease-in;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Topics Section */
+    .topics {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f0f8ff;
+      border-radius: 8px;
+      animation: scaleUp 1.6s ease-in;
+    }
+    @keyframes scaleUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .topics h3 {
+      margin-top: 0;
+    }
+    .topics ul {
+      line-height: 1.6;
+    }
+
+    /* Candidate Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #fafafa;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: cardAppear 1.8s ease-in-out;
+    }
+    @keyframes cardAppear {
+      0% { opacity: 0; transform: scale(0.8) rotateY(90deg); }
+      100% { opacity: 1; transform: scale(1) rotateY(0); }
+    }
+    .card:hover {
+      transform: scale(1.05) rotateZ(1deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .card img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      transition: transform 0.5s ease;
+    }
+    .card:hover img {
+      transform: rotate(5deg) scale(1.1);
+    }
+    .card h3 {
+      margin: 10px 0;
+    }
+
+    /* Rules Section */
+    .rules {
+      margin-top: 40px;
+      padding: 20px;
+      background: #e8f4f8;
+      border-left: 6px solid #004aad;
+      border-radius: 8px;
+      animation: fadeInUp 1.5s ease-in;
+    }
+    .rules h2 {
+      margin-top: 0;
+      color: #004aad;
+    }
+    .rules ul {
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+    .rules ul li {
+      margin-bottom: 10px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .rules ul li:hover {
+      transform: translateX(8px);
+      color: #0077ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><marquee>Online Voting System</marquee></h1>
+    <p><marquee>Your Voice, Your Power</marquee></p>
+  </header>
+  <div class="container">
+    <div class="intro">
+      <h2>About Voting</h2>
+      <p>Voting is the process by which citizens express their choice for leaders or policies. It is a key pillar of democracy, ensuring that the government reflects the will of the people. In India, every citizen aged 18 or above has the legal right to vote, regardless of gender, religion, caste, or economic status.</p>
+      <p>Who can vote? All Indian citizens who are 18 years or older, mentally sound, not convicted of certain crimes, and registered in the electoral roll are eligible to vote.</p>
+      <p>Voting helps decide who will represent you in government and what decisions will shape the future of your community and country.</p>
+      <p>In India, voting is conducted through the Election Commission using secure systems like the Electronic Voting Machine (EVM).</p>
+      
+      <div class="topics">
+        <h3>Unique Topics About Voting</h3>
+        <ul>
+          <li>History of voting rights and their evolution over time.</li>
+          <li>Role of technology in modern elections.</li>
+          <li>Importance of secret ballots to ensure fairness.</li>
+          <li>Impact of voter turnout on election results.</li>
+          <li>How youth participation can shape future policies.</li>
+          <li>Postal voting and voting for citizens abroad.</li>
+          <li>How elections promote accountability and transparency.</li>
+          <li>The role of the media in educating voters.</li>
+          <li>Ethics of campaigning and responsible political advertising.</li>
+          <li>International voting systems and global comparisons.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="c:\Users\hp\OneDrive\Desktop\Meet\bjb.jpeg" alt="Candidate A">
+        <h3>Bhajab</h3>
+        <p>Bhajab is committed to development, progress, and prosperity for all citizens.</p>
+      </div>
+      <div class="card">
+        <img src="c:\Users\hp\OneDrive\Desktop\Meet\congress.png" alt="Candidate B">
+        <h3>Congaresh</h3>
+        <p>Congaresh focuses on equality, justice, and welfare programs for the people.</p>
+      </div>
+    </div>
+
+    <!-- Rules Section -->
+    <div class="rules">
+      <h2>Rules of Voting</h2>
+      <ul>
+        <li>Only Indian citizens aged 18 years or above are eligible to vote.</li>
+        <li>Voters must be registered in the official electoral roll.</li>
+        <li>Each voter is allowed to cast only one vote.</li>
+        <li>Voters must carry a valid Voter ID or other government-approved ID.</li>
+        <li>Bribery, impersonation, or coercion during voting is strictly prohibited.</li>
+        <li>Voting is confidential — voters must not disclose their choice.</li>
+        <li>Damaging or misusing Electronic Voting Machines (EVMs) is a punishable offense.</li>
+        <li>Any kind of campaigning within 100 meters of the polling booth is banned.</li>
+        <li>Discipline and orderly conduct must be maintained inside polling stations.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

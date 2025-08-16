@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(270deg, #162839, #1e3a5f, #162839);
+      background-size: 600% 600%;
+      animation: bgMove 15s ease infinite;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    header {
+      background-color: #283593;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      animation: fadeSlideDown 1s ease-out;
+    }
+    @keyframes fadeSlideDown {
+      0% {opacity: 0; transform: translateY(-20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin: 20px auto;
+      font-size: 1rem;
+      color: #fff;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      flex: 1;
+      animation: scaleUp 0.8s ease-in-out;
+    }
+    @keyframes scaleUp {
+      0% {transform: scale(0.9); opacity: 0;}
+      100% {transform: scale(1); opacity: 1;}
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: box-shadow 0.3s;
+    }
+    input:focus, textarea:focus {
+      box-shadow: 0 0 8px #283593;
+      outline: none;
+    }
+
+    button {
+      background-color: #283593;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #5c6bc0;
+    }
+
+    /* Popup Animation */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      display: none;
+      animation: popupAnim 0.5s forwards;
+    }
+    @keyframes popupAnim {
+      0% {transform: translate(-50%, -50%) scale(0.5); opacity: 0;}
+      100% {transform: translate(-50%, -50%) scale(1); opacity: 1;}
+    }
+    .popup img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #283593;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><marquee>Contact Us</marquee></h1>
+  </header>
+
+  <div class="contact-info">
+    <p>Email: contact@votingsystem.com</p>
+    <p>Phone: +91 98765 43210</p>
+    <p>Address: 123, Democracy Street, New Delhi, India</p>
+  </div>
+
+  <div class="container">
+    <form id="contactForm">
+      <label>Your Name</label>
+      <input type="text" name="name" placeholder="Enter your full name" required>
+
+      <label>Your Email</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+
+      <label>Subject</label>
+      <input type="text" name="subject" placeholder="Enter the subject" required>
+
+      <label>Message</label>
+      <textarea name="message" rows="6" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="popup" id="successPopup">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/1024px-Yes_Check_Circle.svg.png" alt="Success">
+    <h2>Message Sent!</h2>
+    <p>Thank you for contacting us. We’ll get back to you soon.</p>
+  </div>
+
+  <footer>
+    <p>© 2025 Voting System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const popup = document.getElementById('successPopup');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      popup.style.display = 'block';
+      popup.style.animation = 'popupAnim 0.5s forwards';
+
+      setTimeout(() => {
+        popup.style.display = 'none';
+        form.reset();
+      }, 2500);
+    });
+  </script>
+</body>
+</html>

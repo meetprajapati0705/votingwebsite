@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Voting - Home</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f0f0;
+    text-align: center;
+  }
+
+  header {
+    background: #004aad;
+    color: white;
+    padding: 20px;
+  }
+
+  .section {
+    padding: 20px;
+    background: white;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+  }
+
+  .section h2 {
+    color: #004aad;
+  }
+
+  .qa {
+    margin-top: 15px;
+  }
+
+  .qa h4 {
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .qa p {
+    margin: 0 0 10px;
+    color: #555;
+  }
+
+  .candidates {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 50%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .vote-count {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .total {
+    font-size: 18px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><marquee>Online Voting System</marquee></h1>
+</header>
+
+<div class="section">
+  <h2>What is Voting?</h2>
+  <p>Voting is the process by which citizens choose leaders or make decisions on important issues. It is the foundation of a democracy, giving people the power to shape the future of their nation. Every vote matters and contributes to the outcome.</p>
+</div>
+
+<div class="section">
+  <h2>Why Voting is Important?</h2>
+  <p>Voting ensures that the voices of the people are heard. It allows everyone to participate in the decision-making process and choose leaders who represent their interests. By voting, you help build a better future for yourself and your community.</p>
+</div>
+
+<div class="section">
+  <h2>Common Questions About Voting</h2>
+
+  <div class="qa">
+    <h4>1. Who can vote?</h4>
+    <p>Any citizen aged 18 or above with a valid Voter ID can vote.</p>
+
+    <h4>2. Is voting mandatory?</h4>
+    <p>No, but it is a responsibility of every citizen.</p>
+
+    <h4>3. How often do elections happen?</h4>
+    <p>It depends on the position, but general elections happen every 5 years.</p>
+
+    <h4>4. Can I vote online?</h4>
+    <p>Currently, voting is usually done at polling stations, but technology may change this in the future.</p>
+
+    <h4>5. What if I don't vote?</h4>
+    <p>Your voice will not be part of the decision-making process.</p>
+
+    <h4>6. How is my vote counted?</h4>
+    <p>Votes are counted securely by the election commission using EVMs or ballots.</p>
+
+    <h4>7. Can I change my vote?</h4>
+    <p>No, once submitted, your vote is final.</p>
+
+    <h4>8. How can I register to vote?</h4>
+    <p>You can register through the official election commission website or voter centers.</p>
+
+    <h4>9. What is a NOTA option?</h4>
+    <p>NOTA means "None of the Above" if you do not like any candidate.</p>
+
+    <h4>10. Why should I vote?</h4>
+    <p>Because every single vote shapes the future of the country.</p>
+  </div>
+</div>
+
+<h2>Vote for Your Favorite Party</h2>
+<div class="candidates">
+  <div class="card" onclick="vote('bhajab')">
+    <img src="bjb.jpeg" alt="Bhajab">
+    <h3>Bhajab</h3>
+    <div class="vote-count" id="bhajab-votes">Votes: 0</div>
+  </div>
+  <div class="card" onclick="vote('congaresh')">
+    <img src="congress.png" alt="Congaresh">
+    <h3>Congaresh</h3>
+    <div class="vote-count" id="congaresh-votes">Votes: 0</div>
+  </div>
+</div>
+
+</body>
+</html>
