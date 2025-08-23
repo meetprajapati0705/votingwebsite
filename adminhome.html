@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login & Register</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+    background: url(background.jpg) no-repeat center/cover;
+    flex-direction: column;
+}
+header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    padding: 20px 100px; display: flex; justify-content: space-between;
+    align-items: center; z-index: 99;
+}
+.logo { font-size: 2em; color: #fff; }
+.navigation a {
+    position: relative; font-size: 1.1em; color: #fff; text-decoration: none;
+    font-weight: 500; margin-left: 40px; transition: color 0.3s ease;
+}
+.navigation a::after {
+    content: ''; position: absolute; width: 0; left: 0; bottom: -6px;
+    height: 3px; background: #ffdd00; border-radius: 5px;
+    transition: width .3s ease;
+}
+.navigation a:hover { color: black; text-shadow: 0 0 10px white; }
+.navigation a:hover::after { width: 100%; }
+.navigation .btnlogin-popup {
+    width: 130px; height: 50px; background: transparent;
+    border: 2px solid #fff; border-radius: 6px; cursor: pointer;
+    font-size: 1.1em; color: #fff; font-weight: 500; margin-left: 40px;
+}
+.navigation .btnlogin-popup:hover { background: black; color: white;}
+.wrapper {
+    position: relative; width: 400px; background: transparent;
+    border: 2px solid rgba(255,255,255,.5); border-radius: 20px;
+    backdrop-filter: blur(20px); box-shadow: 0 0 30px rgba(0,0,0,.5);
+    overflow: hidden; transform: scale(0);
+    transition: transform .3s ease; z-index: 100;
+}
+.wrapper.active-popup { transform: scale(1); }
+.wrapper .form-box { width: 100%; padding: 40px; }
+.icon-close {
+    position: absolute; top: 0; right: 0; width: 45px; height: 45px;
+    background: #162938; font-size: 2em; color: #fff;
+    display: flex; justify-content: center; align-items: center;
+    border-bottom-left-radius: 20px; cursor: pointer; z-index: 1;
+}
+.form-box h2 { font-size: 2em; color: #162938; text-align: center; }
+.input-box {
+    position: relative; width: 100%; height: 50px;
+    border-bottom: 2px solid #162938; margin: 30px 0;
+}
+.input-box label {
+    position: absolute; top: 50%; left: 5px; transform: translateY(-50%);
+    font-size: 1em; color: #162938; font-weight: 500;
+    pointer-events: none; transition: .3s;
+}
+.input-box input:focus ~ label,
+.input-box input:valid ~ label { top: -5px; color: #007bff; }
+.input-box input {
+    width: 100%; height: 100%; background: transparent; border: none;
+    outline: none; font-size: 1em; color: #162938; font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+.input-box .icon {
+    position: absolute; right: 8px; font-size: 1.2em;
+    color: #162938; line-height: 57px; cursor: pointer;
+}
+.remember-forgot {
+    font-size: .9em; color: #162938; font-weight: 500;
+    margin: -15px 0 15px; display: flex; justify-content: space-between;
+}
+.btn {
+    width: 100%; height: 45px; background: #162938; border: none;
+    border-radius: 6px; cursor: pointer; font-size: 1em; color: #fff;
+    font-weight: 500;
+}
+.message { font-size: .8em; margin-top: 5px; }
+.message.invalid { color: red; }
+.message.valid { color: green; }
+.switch-link { font-size: .9em; text-align: center; margin-top: 15px; }
+.switch-link a { color: #007bff; text-decoration: none; font-weight: 500; }
+.switch-link a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+    <center>
+    <nav class="navigation">
+        <a href="ahome.html">Home</a>
+        <a href="aabout.html">About</a>
+        <a href="afeedback.html">Feedback</a>
+        <a href="admin.html">Check for vote</a>
+    </nav>
+    </center>
+</header>
+
+
+<script>
+const wrapper = document.querySelector('.wrapper');
+const btnPopup = document.querySelector('.btnlogin-popup');
+const iconClose = document.querySelector('.icon-close');
+const loginFormBox = document.querySelector('.form-box.login');
+const registerFormBox = document.querySelector('.form-box.register');
+const showRegisterLink = document.getElementById('showRegister');
+const showLoginLink = document.getElementById('showLogin');
+
+function switchToLogin() {
+    registerFormBox.style.display = 'none';
+    loginFormBox.style.display = 'block';
+}
+function switchToRegister() {
+    loginFormBox.style.display = 'none';
+    registerFormBox.style.display = 'block';
+}
+
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    const age = document.getElementById("loginAge").value;
+    const votingId = document.getElementById("loginVotingId").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(u => 
+        u.email === email && 
+        u.password === password &&
+        u.age === age &&
+        u.votingId === votingId
+    );
+
+    if (user) {
+        document.getElementById("loginMessage").innerText = "✅ Login successful!";
+        document.getElementById("loginMessage").className = "message valid";
+
+      
+        localStorage.setItem("currentVoter", JSON.stringify({
+            id: votingId,
+            email: email
+        }));
+
+        setTimeout(() => {
+            window.location.href = "vote.html";
+        }, 1000);
+    } else {
+        document.getElementById("loginMessage").innerText = "❌ Invalid details!";
+        document.getElementById("loginMessage").className = "message invalid";
+    }
+});
+
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("regName").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+    const age = document.getElementById("regAge").value;
+    const votingId = document.getElementById("regVotingId").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.find(u => u.email === email)) {
+        document.getElementById("registerMessage").innerText = "⚠ User already exists!";
+        document.getElementById("registerMessage").className = "message invalid";
+        return;
+    }
+
+    users.push({ name, email, password, age, votingId });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    document.getElementById("registerMessage").innerText = "✅ Registration successful!";
+    document.getElementById("registerMessage").className = "message valid";
+
+    setTimeout(() => {
+        switchToLogin();
+    }, 1500);
+});
+
+
+btnPopup.addEventListener('click', () => {
+    wrapper.classList.add('active-popup');
+    switchToRegister(); 
+});
+iconClose.addEventListener('click', () => {
+    wrapper.classList.remove('active-popup');
+});
+showRegisterLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchToRegister();
+});
+showLoginLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchToLogin();
+});
+
+function togglePassword(inputId, iconElement) {
+    const input = document.getElementById(inputId);
+    const icon = iconElement.querySelector("ion-icon");
+    if (input.type === "password") {
+        input.type = "text";
+        icon.setAttribute("name", "eye");
+    } else {
+        input.type = "password";
+        icon.setAttribute("name", "eye-off");
+    }
+}
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

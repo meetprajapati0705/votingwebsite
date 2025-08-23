@@ -13,28 +13,24 @@
       overflow-x: hidden;
     }
 
-    /* Header Animation */
+ 
     header {
       background-color: #004aad;
       color: white;
       padding: 20px;
       text-align: center;
-      animation: slideDown 1.2s ease-out;
-    }
-    @keyframes slideDown {
-      0% { transform: translateY(-100%); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
+      padding-bottom: 10px;
     }
     header p {
       margin: 5px 0 0;
     }
 
-    /* Main Container */
+ 
     .container {
       max-width: 900px;
       margin: 20px auto;
@@ -42,42 +38,26 @@
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      animation: fadeIn 1.5s ease-in;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Intro Section */
+   
     .intro {
       text-align: center;
       margin-bottom: 30px;
     }
     .intro h2 {
       margin-bottom: 10px;
-      animation: fadeInUp 1.3s ease-in;
     }
     .intro p {
       line-height: 1.6;
-      animation: fadeInUp 1.5s ease-in;
-    }
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Topics Section */
+   
     .topics {
       margin-top: 20px;
       padding: 15px;
       background-color: #f0f8ff;
       border-radius: 8px;
-      animation: scaleUp 1.6s ease-in;
-    }
-    @keyframes scaleUp {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
     .topics h3 {
       margin-top: 0;
@@ -86,7 +66,6 @@
       line-height: 1.6;
     }
 
-    /* Candidate Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -98,16 +77,6 @@
       padding: 20px;
       text-align: center;
       border: 1px solid #ddd;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      animation: cardAppear 1.8s ease-in-out;
-    }
-    @keyframes cardAppear {
-      0% { opacity: 0; transform: scale(0.8) rotateY(90deg); }
-      100% { opacity: 1; transform: scale(1) rotateY(0); }
-    }
-    .card:hover {
-      transform: scale(1.05) rotateZ(1deg);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
     .card img {
       width: 100%;
@@ -115,23 +84,18 @@
       height: auto;
       border-radius: 50%;
       margin-bottom: 15px;
-      transition: transform 0.5s ease;
-    }
-    .card:hover img {
-      transform: rotate(5deg) scale(1.1);
     }
     .card h3 {
       margin: 10px 0;
     }
 
-    /* Rules Section */
+   
     .rules {
       margin-top: 40px;
       padding: 20px;
       background: #e8f4f8;
       border-left: 6px solid #004aad;
       border-radius: 8px;
-      animation: fadeInUp 1.5s ease-in;
     }
     .rules h2 {
       margin-top: 0;
@@ -143,18 +107,44 @@
     }
     .rules ul li {
       margin-bottom: 10px;
-      transition: transform 0.3s ease, color 0.3s ease;
     }
-    .rules ul li:hover {
-      transform: translateX(8px);
-      color: #0077ff;
-    }
+    .navigation a {
+    position: relative; font-size: 1.1em; color: #fff; text-decoration: none;
+    font-weight: 500; margin-left: 40px; transition: color 0.3s ease;
+}
+
+.navigation a:hover { color: blue; text-shadow: 0 0 10px; }
+.navigation a:hover::after { width: 100%; }
+
+.navigation .btnlogin-popup {
+    width: 130px; height: 50px; background: transparent;
+    border: 2px solid #fff; border-radius: 6px; cursor: pointer;
+    font-size: 1.1em; color: #fff; font-weight: 500; margin-left: 40px;
+    position: relative; overflow: hidden; padding: 10px; 
+}
+.navigation .btnlogin-popup:hover { background: black; color: white;}
+
   </style>
 </head>
+<center>
+ <nav class="navigation">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="service.html">Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="feedback.html">Feedback</a>
+          <a href="results.html">Results</a>
+         <a href="Untitled-1.html">Back to Login</a>
+      
+    </nav>
+    </center>
+</header>
 <body>
   <header>
-    <h1><marquee>Online Voting System</marquee></h1>
-    <p><marquee>Your Voice, Your Power</marquee></p>
+    <marquee>
+    <h1>Online Voting System</h1>
+    <p>Your Voice, Your Power</p>
+  </marquee>
   </header>
   <div class="container">
     <div class="intro">
@@ -183,18 +173,18 @@
 
     <div class="grid">
       <div class="card">
-        <img src="c:\Users\hp\OneDrive\Desktop\Meet\bjb.jpeg" alt="Candidate A">
+        <img src="bjb.jpeg" alt="Candidate A">
         <h3>Bhajab</h3>
         <p>Bhajab is committed to development, progress, and prosperity for all citizens.</p>
       </div>
       <div class="card">
-        <img src="c:\Users\hp\OneDrive\Desktop\Meet\congress.png" alt="Candidate B">
+        <img src="congress.png" alt="Candidate B">
         <h3>Congaresh</h3>
         <p>Congaresh focuses on equality, justice, and welfare programs for the people.</p>
       </div>
     </div>
 
-    <!-- Rules Section -->
+   
     <div class="rules">
       <h2>Rules of Voting</h2>
       <ul>

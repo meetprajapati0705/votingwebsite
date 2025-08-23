@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #162839;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #283593;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin: 20px auto;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #283593;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #1a237e;
+    }
+
+   
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      display: none;
+    }
+
+    .popup img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #283593;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: auto;
+    }
+
+    .navigation a {
+      position: relative;
+      font-size: 1.1em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 40px;
+    }
+    .navigation a:hover{
+       color: blue; text-shadow: 0 0 10px; 
+    }
+  </style>
+</head>
+<center>
+  <nav class="navigation">
+    <a href="ahome.html">Home</a>
+    <a href="aabout.html">About</a>
+    <a href="afeedback.html">Feedback</a>
+    <a href="admin.html">Check for vote</a>
+    <a href="loginadmin.html">Back</a>
+  </nav>
+</center>
+<body>
+  <header>
+    <h1><marquee>Give your Feedback</marquee></h1>
+  </header>
+
+  <div class="contact-info">
+    <p>Email: contact@votingsystem.com</p>
+    <p>Phone: +91 98765 43210</p>
+    <p>Address: 123, Democracy Street, New Delhi, India</p>
+  </div>
+
+  <div class="container">
+    <form id="contactForm">
+      <label>Your Name</label>
+      <input type="text" name="name" placeholder="Enter your full name" required>
+
+      <label>Your Email</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+
+
+      <label>Feedback </label>
+      <textarea name="message" rows="6" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="popup" id="successPopup">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/1024px-Yes_Check_Circle.svg.png" alt="Success">
+    <h2>Message Sent!</h2>
+    <p>Thanks for feedback. we hope you will stay with us forever</p>
+  </div>
+
+  <footer>
+    <p>© 2025 Voting System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const popup = document.getElementById('successPopup');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      popup.style.display = 'block';   
+      form.reset();                    
+
+   
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
+  

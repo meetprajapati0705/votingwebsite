@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel - Voting System</title>
+<style>
+    body {background:#0d1b2a; font-family:Arial,sans-serif; color:white; margin:0; padding:0;}
+    header {text-align:center; padding:20px; background:#1b263b;}
+    .container {max-width:900px; margin:auto; padding:20px;}
+    table {width:100%; border-collapse:collapse; margin-top:15px;}
+    th, td {border:1px solid #ddd; padding:12px; text-align:center;}
+    th {background:#415a77;}
+    .btn {
+        margin-top:20px;
+        padding:10px 20px;
+        background:#e63946;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:1em;
+    }
+    .btn:hover {background:#d62828;}
+    .delete-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background: #c82333;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <button class="btn" onclick="logout()">Logout</button>
+    </header>
+    <header><h2>🛠 Admin Panel - Voting System</h2></header>
+    <div class="container">
+        <h3>Voters Who Voted</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Voter ID</th>
+                    <th>Email</th>
+                    <th>Choice</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="voteList"></tbody>
+        </table>
+
+        <button class="btn" onclick="restartVoting()">🔄 Restart Voting</button>
+    </div>
+
+<script>
+function renderVotes() {
+    const voteList = document.getElementById("voteList");
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    voteList.innerHTML = "";
+    
+    const votersWhoVoted = users.filter(user => user.choice);
+
+    votersWhoVoted.forEach((voter, index) => {
+        voteList.innerHTML += `
+            <tr>
+                <td>${index+1}</td>
+                <td>${voter.votingId}</td>
+                <td>${voter.email}</td>
+                <td>${voter.choice}</td>
+                <td><button class="delete-btn" onclick="deleteVoter('${voter.email}')">Delete</button></td>
+            </tr>
+        `;
+    });
+}
+
+function deleteVoter(emailToDelete) {
+    if (confirm("Are you sure you want to delete this voter's data?")) {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        
+        users = users.filter(user => user.email !== emailToDelete);
+
+        localStorage.setItem("users", JSON.stringify(users));
+        
+
+        renderVotes();
+    }
+}
+
+function restartVoting() {
+    if (confirm("⚠ Are you sure you want to clear all votes? This will clear all voters and their choices.")) {
+        localStorage.removeItem("users");
+        renderVotes();
+    }
+}
+
+renderVotes();
+
+function logout(){
+    window.location.href = "loginadmin.html";   
+}
+</script>
+</body>
+</html>

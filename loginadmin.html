@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Register & Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 360px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      backdrop-filter: blur(12px);
+      color: #fff;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      outline: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 14px;
+    }
+    input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    input:focus {
+      border-color: #00c6ff;
+      background: rgba(255,255,255,0.2);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(135deg,#00c6ff,#0072ff);
+      color: #fff;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    button:hover {
+      background: linear-gradient(135deg,#0072ff,#00c6ff);
+    }
+    .switch {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .switch a {
+      color: #00c6ff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .switch a:hover {
+      text-decoration: underline;
+    }
+    .show-pass {
+      font-size: 13px;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ddd;
+    }
+    .show-pass input {
+      width: auto;
+      accent-color: #00c6ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="registerForm">
+      <h2>Admin Register</h2>
+      <input type="email" id="registerEmail" placeholder="Email ID" required>
+      <input type="password" id="registerPassword" placeholder="Password" required>
+      <div class="show-pass">
+        <input type="checkbox" onclick="togglePassword('registerPassword')"> Show Password
+      </div>
+      <button type="submit">Register</button>
+      <div class="switch">
+        Already have an account? <a onclick="showLogin()">Login</a>
+      </div>
+    </form>
+
+    <form id="loginForm" style="display:none;">
+      <h2>Admin Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email ID" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <div class="show-pass">
+        <input type="checkbox" onclick="togglePassword('loginPassword')"> Show Password
+      </div>
+      <button type="submit">Login</button>
+      <div class="switch">
+        Don’t have an account? <a onclick="showRegister()">Register</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("registerForm").style.display = "block";
+    }
+    function showLogin() {
+      document.getElementById("registerForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+    function togglePassword(id) {
+      let input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
+    function validatePassword(password) {
+      const specialChar = /[!@#$%^&*(),.?":{}|<>]/;
+      if (password.length < 3) {
+        alert("Password must be at least 3 characters long");
+        return false;
+      }
+      if (password[0] !== password[0].toUpperCase()) {
+        alert("Password must start with a capital letter");
+        return false;
+      }
+      if (password[1] !== password[1].toLowerCase()) {
+        alert("The second character must be a small letter");
+        return false;
+      }
+      if (!specialChar.test(password)) {
+        alert("Password must contain at least one special character");
+        return false;
+      }
+      return true;
+    }
+    document.getElementById("registerForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let email = document.getElementById("registerEmail").value;
+      let password = document.getElementById("registerPassword").value;
+      if (!validatePassword(password)) return;
+      localStorage.setItem("adminEmail", email);
+      localStorage.setItem("adminPass", password);
+      alert("Registration successful");
+      showLogin();
+    });
+    document.getElementById("loginForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let email = document.getElementById("loginEmail").value;
+      let pass = document.getElementById("loginPassword").value;
+      let storedEmail = localStorage.getItem("adminEmail");
+      let storedPass = localStorage.getItem("adminPass");
+      if(email === storedEmail && pass === storedPass){
+        alert("Login successful");
+        window.location.href='adminhome.html';
+      } else {
+        alert("Invalid email or password");
+      }
+    });
+  </script>
+</body>
+</html>
